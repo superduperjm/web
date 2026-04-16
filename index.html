@@ -1,482 +1,64 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KOOMAX - 用绿色能源驱动未来</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --green: #4CAF50;
-    --green-light: #d4f0d4;
-    --green-mid: #a8dfa8;
-    --green-dark: #2e7d32;
-    --black: #111;
-    --dark: #1a1a1a;
-    --gray: #555;
-    --light-gray: #f5f5f5;
-    --white: #fff;
-    --font-en: 'Montserrat', sans-serif;
-    --font-cn: 'Noto Sans SC', sans-serif;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: var(--font-cn); color: var(--black); background: var(--white); }
-
-  /* ── NAV ── */
-  nav {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 60px; height: 64px;
-    background: var(--white);
-    border-bottom: 1px solid #eee;
-    position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 2px 12px rgba(0,0,0,.04);
-  }
-  .logo {
-    font-family: var(--font-en); font-weight: 800; font-size: 22px;
-    color: var(--green-dark); letter-spacing: 1px;
-  }
-  .nav-links { display: flex; gap: 36px; list-style: none; }
-  .nav-links a {
-    text-decoration: none; color: var(--black); font-size: 14px;
-    font-weight: 500; transition: color .2s;
-  }
-  .nav-links a:hover { color: var(--green); }
-  .nav-lang {
-    font-size: 13px; color: var(--gray); cursor: pointer;
-    border: 1px solid #ddd; padding: 4px 12px; border-radius: 20px;
-    transition: all .2s;
-  }
-  .nav-lang:hover { border-color: var(--green); color: var(--green); }
-
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 40%, #b2dfdb 100%);
-    min-height: 420px;
-    display: flex; align-items: center;
-    padding: 60px 60px 80px;
-    position: relative; overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; right: -80px; top: -80px;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(255,255,255,.35) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-  .hero-text { flex: 1; z-index: 1; }
-  .hero-text h1 {
-    font-size: 46px; font-weight: 800; line-height: 1.25;
-    color: var(--dark); margin-bottom: 36px;
-  }
-  .hero-text h1 span { color: var(--green-dark); }
-  .hero-btns { display: flex; gap: 16px; }
-  .btn-primary {
-    background: var(--green); color: var(--white);
-    border: none; padding: 12px 28px; border-radius: 30px;
-    font-size: 14px; font-weight: 600; cursor: pointer;
-    font-family: var(--font-cn); transition: all .25s;
-    box-shadow: 0 4px 16px rgba(76,175,80,.35);
-  }
-  .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(76,175,80,.45); }
-  .btn-secondary {
-    background: transparent; color: var(--dark);
-    border: 1.5px solid var(--dark); padding: 12px 28px; border-radius: 30px;
-    font-size: 14px; font-weight: 600; cursor: pointer;
-    font-family: var(--font-cn); transition: all .25s;
-  }
-  .btn-secondary:hover { border-color: var(--green); color: var(--green); }
-
-  .hero-visual {
-    flex: 1; display: flex; align-items: center; justify-content: center;
-    z-index: 1;
-  }
-  .battery-group {
-    display: flex; align-items: flex-end; gap: 10px;
-    animation: float 4s ease-in-out infinite;
-  }
-  @keyframes float {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-  }
-  .battery {
-    background: linear-gradient(180deg, #e0e0e0 0%, #bdbdbd 100%);
-    border-radius: 6px 6px 4px 4px;
-    position: relative; display: flex; align-items: center; justify-content: center;
-    box-shadow: 2px 4px 12px rgba(0,0,0,.18);
-  }
-  .battery::before {
-    content: 'KOOMAX';
-    font-family: var(--font-en); font-size: 7px; font-weight: 800;
-    color: var(--green-dark); writing-mode: vertical-rl;
-    letter-spacing: 1.5px;
-  }
-  .battery::after {
-    content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%);
-    width: 40%; height: 6px; background: #9e9e9e; border-radius: 2px 2px 0 0;
-  }
-  .b1 { width: 38px; height: 90px; }
-  .b2 { width: 44px; height: 110px; background: linear-gradient(180deg, #e8e8e8 0%, #c5c5c5 100%); }
-  .b3 { width: 52px; height: 130px; background: linear-gradient(180deg, #efefef 0%, #d0d0d0 100%); }
-  .b4 { width: 42px; height: 100px; }
-  .b5 { width: 70px; height: 80px; border-radius: 8px; background: linear-gradient(180deg, #e4e4e4 0%, #c8c8c8 100%); }
-  .b5::before { writing-mode: horizontal-tb; font-size: 8px; }
-  .b5::after { display: none; }
-
-  .hero-dots {
-    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
-    display: flex; gap: 8px;
-  }
-  .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(0,0,0,.2); }
-  .dot.active { background: var(--green-dark); width: 20px; border-radius: 4px; }
-
-  /* ── SECTION BASE ── */
-  section { padding: 80px 60px; }
-  .section-title { font-size: 40px; font-weight: 700; text-align: center; margin-bottom: 50px; }
-
-  /* ── ABOUT ── */
-  .about { background: var(--white); }
-  .about-inner {
-    display: grid; grid-template-columns: 1fr 1.2fr;
-    gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto;
-  }
-  .about-img {
-    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-    border-radius: 16px; height: 280px;
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden; position: relative;
-  }
-  .about-img .big-battery {
-    width: 90px; height: 200px;
-    background: linear-gradient(180deg, #e0e0e0 0%, #b0b0b0 100%);
-    border-radius: 10px 10px 6px 6px;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 4px 8px 24px rgba(0,0,0,.2);
-    position: relative; margin: 0 10px;
-  }
-  .about-img .big-battery::after {
-    content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
-    width: 40%; height: 10px; background: #9e9e9e; border-radius: 3px 3px 0 0;
-  }
-  .about-img .big-battery span {
-    writing-mode: vertical-rl; font-family: var(--font-en);
-    font-weight: 800; font-size: 10px; color: var(--green-dark); letter-spacing: 2px;
-  }
-  .about-img .bb2 {
-    width: 70px; height: 160px; margin-top: 40px;
-    background: linear-gradient(180deg, #ececec 0%, #c0c0c0 100%);
-  }
-  .about-text p { font-size: 16px; color: var(--gray); line-height: 1.9; margin-bottom: 14px; }
-  .about-link {
-    display: inline-block; margin-top: 10px;
-    font-size: 16px; font-weight: 700; color: var(--green-dark);
-    text-decoration: none; border-bottom: 2px solid var(--green);
-    padding-bottom: 2px; transition: color .2s;
-  }
-  .about-link:hover { color: var(--green); }
-
-  /* ── PRODUCTS GRID ── */
-  .products { background: var(--light-gray); }
-  .prod-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 24px; max-width: 1100px; margin: 0 auto;
-  }
-  .prod-card {
-    background: var(--white); border-radius: 14px; overflow: hidden;
-    box-shadow: 0 2px 16px rgba(0,0,0,.06);
-    transition: transform .3s, box-shadow .3s;
-  }
-  .prod-card:hover { transform: translateY(-6px); box-shadow: 0 10px 32px rgba(0,0,0,.12); }
-  .prod-card-img {
-    height: 200px;
-    background: linear-gradient(135deg, #f0f8f0, #dcedc8);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 64px; position: relative; overflow: hidden;
-  }
-  .prod-card-img::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.04));
-  }
-  .prod-card-body { padding: 22px 24px 26px; }
-  .prod-card h3 { font-size: 30px; font-weight: 700; margin-bottom: 10px; }
-  .prod-card p { font-size: 16px; color: var(--gray); line-height: 1.8; }
-
-  /* ── FULL PRODUCT LINE ── */
-  .product-line { background: #f9f9f9; }
-  .pl-label { font-size: 16px; font-weight: 700; color: var(--green); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
-  .pl-title { font-size: 28px; font-weight: 700; margin-bottom: 10px; }
-  .pl-sub { font-size: 16px; color: var(--gray); margin-bottom: 44px; line-height: 1.7; }
-  .pl-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 20px; max-width: 1100px; margin: 0 auto;
-  }
-  .pl-item {
-    background: var(--white); border-radius: 12px; padding: 24px 16px 20px;
-    text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,.05);
-    transition: all .3s;
-  }
-  .pl-item:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.1); }
-  .pl-icon { font-size: 48px; margin-bottom: 14px; }
-  .pl-item p { font-size: 13px; color: var(--gray); font-weight: 500; }
-
-  /* ── SOLUTION ── */
-  .solution { background: var(--white); }
-  .sol-label { font-size: 16px; font-weight: 700; color: var(--green); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
-  .sol-title { font-size: 28px; font-weight: 700; margin-bottom: 10px; }
-  .sol-sub { font-size: 16px; color: var(--gray); margin-bottom: 44px; line-height: 1.7; }
-  .sol-steps {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 16px; margin-bottom: 16px; max-width: 1100px; margin: 0 auto 16px;
-  }
-  .sol-steps2 {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 16px; max-width: 1100px; margin: 0 auto;
-  }
-  .step {
-    background: var(--light-gray); border-radius: 10px; padding: 18px 20px;
-    display: flex; align-items: center; gap: 12px;
-    font-size: 16px; font-weight:500; color: var(--dark);
-    border: 1.5px solid transparent; transition: all .25s;
-  }
-  .step:hover { border-color: var(--green); background: #f0faf0; }
-  .step-num {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: var(--green); color: var(--white);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 700; flex-shrink: 0;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--dark); color: #ccc;
-    padding: 60px 60px 30px;
-  }
-  .footer-grid {
-    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 40px; margin-bottom: 50px;
-  }
-  .footer-logo {
-    font-family: var(--font-en); font-weight: 800; font-size: 22px;
-    color: var(--white); letter-spacing: 1px; margin-bottom: 8px;
-  }
-  .footer-tagline { font-size: 12px; color: #888; margin-bottom: 0; }
-  .footer-col h4 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 18px; letter-spacing: .5px; }
-  .footer-col ul { list-style: none; }
-  .footer-col ul li { margin-bottom: 10px; }
-  .footer-col ul li a { text-decoration: none; color: #999; font-size: 13px; transition: color .2s; }
-  .footer-col ul li a:hover { color: var(--green); }
-  .footer-col .contact-item { font-size: 13px; color: #999; margin-bottom: 8px; }
-  .footer-bottom {
-    border-top: 1px solid #333; padding-top: 24px;
-    font-size: 12px; color: #666; text-align: center;
-  }
-
-  /* ── ANIMATIONS ── */
-  .fade-up {
-    opacity: 0; transform: translateY(30px);
-    transition: opacity .6s ease, transform .6s ease;
-  }
-  .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-  @media (max-width: 900px) {
-    nav { padding: 0 20px; }
-    .nav-links { gap: 16px; }
-    section { padding: 60px 20px; }
-    .hero { padding: 40px 20px 60px; flex-direction: column; }
-    .hero-text h1 { font-size: 32px; }
-    .about-inner { grid-template-columns: 1fr; }
-    .prod-grid { grid-template-columns: 1fr; }
-    .pl-grid { grid-template-columns: repeat(2, 1fr); }
-    .sol-steps, .sol-steps2 { grid-template-columns: repeat(2, 1fr); }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judy Min | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #333; }
+        .profile-shadow { box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
+    </style>
 </head>
-<body>
+<body class="bg-white">
 
-<!-- NAV -->
-<nav>
-  <div class="logo">KOOMAX</div>
-  <ul class="nav-links">
-    <li><a href="#">首页</a></li>
-    <li><a href="#">产品</a></li>
-    <li><a href="#">方案</a></li>
-    <li><a href="#">新闻</a></li>
-    <li><a href="#">关于我们</a></li>
-    <li><a href="#">联系我们</a></li>
-  </ul>
-  <div class="nav-lang">中文</div>
-</nav>
+    <nav class="border-b border-gray-100 py-6 px-8 md:px-20 flex justify-between items-center">
+        <h1 class="font-bold text-xl tracking-wide uppercase">Judy Min</h1>
+        <a href="#" class="text-gray-600 hover:text-black transition">works</a>
+    </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-text">
-    <h1>用绿色能源<br><span>驱动未来</span></h1>
-    <div class="hero-btns">
-      <button class="btn-primary">电池定制</button>
-      <button class="btn-secondary">解决方案</button>
-    </div>
-  </div>
-  <div class="hero-visual">
-    <div class="battery-group">
-      <div class="battery b1"></div>
-      <div class="battery b2"></div>
-      <div class="battery b3"></div>
-      <div class="battery b4"></div>
-      <div class="battery b5"></div>
-    </div>
-  </div>
-  <div class="hero-dots">
-    <div class="dot active"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-  </div>
-</div>
+    <main class="max-w-6xl mx-auto mt-16 px-8 md:px-20 pb-20">
+        <div class="flex flex-col md:flex-row gap-12 md:gap-24">
+            
+            <div class="w-full md:w-1/3 flex justify-start items-start">
+                <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-[#3078BE] overflow-hidden profile-shadow">
+                    <img src="Avatar.png" alt="Judy Min Avatar" class="w-full h-full object-cover">
+                </div>
+            </div>
 
-<!-- ABOUT -->
-<section class="about">
-  <h2 class="section-title fade-up">一站式定制电池提供商</h2>
-  <div class="about-inner fade-up">
-    <div class="about-img">
-      <div class="big-battery"><span>KOOMAX</span></div>
-      <div class="big-battery bb2"><span>KOOMAX</span></div>
-    </div>
-    <div class="about-text">
-      <p>KOOMAX 拥有丰富的产品线，涵盖锂离子软包电池、锂离子圆柱电池等，可满足广泛的应用场景。</p>
-      <p>我们专注于为复杂应用场景设计和制造定制化电池及电源解决方案。</p>
-      <p>我们的使命是赋能客户，研发最先进的智能电子产品。</p>
-      <a href="#" class="about-link">定制化电池</a>
-    </div>
-  </div>
-</section>
+            <div class="w-full md:w-2/3">
+                <section class="mb-12">
+                    <h2 class="text-2xl font-semibold mb-6 text-gray-800">About Me</h2>
+                    <div class="space-y-6 text-gray-600 leading-relaxed max-w-2xl">
+                        <p>Hello, I'm Judy Min.</p>
+                        <p>
+                            I am a designer passionate about exploring the future. From Arizona State University to Parsons School of Design in New York, my design journey has always revolved around a single core mission: creating designs that are not only aesthetically pleasing but also possess commercial vitality.
+                        </p>
+                        <p>
+                            With a dual background in Industrial Design and Interaction Design, I navigate seamlessly between physical products and digital experiences. I view my role as more than just a designer; I am a "translator of the future"—transforming emerging trends into products that people truly need.
+                        </p>
+                        <p>
+                            If you are looking for a design partner who combines creative energy with strategic business thinking, I'd love to connect!
+                        </p>
+                    </div>
+                </section>
 
-<!-- PRODUCT CARDS -->
-<section class="products">
-  <div class="prod-grid">
-    <div class="prod-card fade-up">
-      <div class="prod-card-img">🔋</div>
-      <div class="prod-card-body">
-        <h3>二次电池</h3>
-        <p>KOOMAX 生产高性能锂离子软包电池和圆柱电池，产品可定制，适用于多种应用场景。</p>
-      </div>
-    </div>
-    <div class="prod-card fade-up">
-      <div class="prod-card-img">⚡</div>
-      <div class="prod-card-body">
-        <h3>一次电池</h3>
-        <p>KOOMAX是一次电池领域的领先供应商，提供适用于各类电子设备的全系列产品。</p>
-      </div>
-    </div>
-    <div class="prod-card fade-up">
-      <div class="prod-card-img">🏭</div>
-      <div class="prod-card-body">
-        <h3>电池专家</h3>
-        <p>凭借技术实力与品质承诺，辅以先进的制造及质量管控体系，我们的电池在能量密度、充电速度与循环寿命方面表现卓越。</p>
-      </div>
-    </div>
-    <div class="prod-card fade-up">
-      <div class="prod-card-img">💡</div>
-      <div class="prod-card-body">
-        <h3>方案设计</h3>
-        <p>KOOMAX 在电池系统设计、开发及安全认证领域拥有全球专业技术与经验。</p>
-      </div>
-    </div>
-  </div>
-</section>
+                <section class="py-6 border-t border-gray-100 flex justify-between items-center">
+                    <h3 class="text-xl font-semibold text-gray-800">Portfolio</h3>
+                    <a href="#" class="text-gray-400 cursor-not-allowed font-medium">Download</a>
+                </section>
 
-<!-- FULL PRODUCT LINE -->
-<section class="product-line">
-  <div style="max-width:1100px;margin:0 auto;">
-    <p class="pl-label fade-up">产品</p>
-    <h2 class="pl-title fade-up">全面的电池产品体系</h2>
-    <p class="pl-sub fade-up">从一次电池到高性能锂离子软包电池和圆柱电池，KOOMAX 专注于设计和生产高精密电池及电源解决方案。</p>
-    <div class="pl-grid">
-      <div class="pl-item fade-up">
-        <div class="pl-icon">🔋</div>
-        <p>锂离子软包电池</p>
-      </div>
-      <div class="pl-item fade-up">
-        <div class="pl-icon">⚡</div>
-        <p>锂离子圆柱电池</p>
-      </div>
-      <div class="pl-item fade-up">
-        <div class="pl-icon">🗃️</div>
-        <p>电池包系统</p>
-      </div>
-      <div class="pl-item fade-up">
-        <div class="pl-icon">🔌</div>
-        <p>一次电池</p>
-      </div>
-    </div>
-  </div>
-</section>
+                <section class="py-6 border-t border-gray-100 flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+                    <h3 class="text-xl font-semibold text-gray-800">Linkedin</h3>
+                    <a href="https://www.linkedin.com/in/minxinyuan/" class="text-blue-500 hover:underline break-all">
+                        https://www.linkedin.com/in/minxinyuan/
+                    </a>
+                </section>
+            </div>
 
-<!-- SOLUTION -->
-<section class="solution">
-  <div style="max-width:1100px;margin:0 auto;">
-    <p class="sol-label fade-up">方案</p>
-    <h2 class="sol-title fade-up">全流程电池工程技术服务</h2>
-    <p class="sol-sub fade-up">我们整合设计、制造、测试及认证能力，为全球客户提供创新的电源解决方案。</p>
-    <div class="sol-steps fade-up">
-      <div class="step"><div class="step-num">1</div>设备需求分析</div>
-      <div class="step"><div class="step-num">2</div>电芯设计</div>
-      <div class="step"><div class="step-num">3</div>BMS设计</div>
-      <div class="step"><div class="step-num">4</div>结构设计</div>
-    </div>
-    <div class="sol-steps2 fade-up">
-      <div class="step"><div class="step-num">5</div>测试</div>
-      <div class="step"><div class="step-num">6</div>认证</div>
-      <div class="step"><div class="step-num">7</div>试产</div>
-      <div class="step"><div class="step-num">8</div>量产</div>
-    </div>
-  </div>
-</section>
+        </div>
+    </main>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div>
-      <div class="footer-logo">KOOMAX</div>
-      <p class="footer-tagline">Power your mobile life!</p>
-    </div>
-    <div class="footer-col">
-      <h4>产品</h4>
-      <ul>
-        <li><a href="#">一次电池</a></li>
-        <li><a href="#">锂离子圆柱电池</a></li>
-        <li><a href="#">锂离子软包电池</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#">关于我们</a></li>
-        <li><a href="#">新闻动态</a></li>
-        <li><a href="#">解决方案</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>联系我们</h4>
-      <p class="contact-item">tech@koomax.com</p>
-      <p class="contact-item">+86-21-33688383</p>
-      <p class="contact-item">Shanghai, China</p>
-    </div>
-  </div>
-  <div class="footer-bottom">copyright @2026 KOOMAX. All Rights Reserved.</div>
-</footer>
-
-<script>
-  // Scroll fade-in
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-</script>
 </body>
 </html>
