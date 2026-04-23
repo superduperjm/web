@@ -10,12 +10,38 @@
     <style>
         body { font-family: 'Inter', sans-serif; color: #333; }
         .work-item-bg { background-color: #f9f9f9; }
+        .work-item-container {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+        .work-item-container:hover {
+            background-color: #d1d1d1; /* 整体背景变暗 */
+        }
+        .work-item-container:hover .overlay {
+            transform: translateY(0);
+        }
+        .work-item-container:hover .project-image {
+            filter: brightness(0.6); /* 图片也变暗 */
+        }
     </style>
 </head>
 <body class="bg-white">
 
     <nav class="border-b border-gray-100 py-6 px-8 md:px-20 flex justify-between items-center">
-        <h1 a href="about.html" class="font-bold text-xl tracking-wide uppercase">Judy Min</h1>
+        <a href="about.html" class="font-bold text-xl tracking-wide uppercase">Judy Min</a>
         <div class="flex space-x-12">
             <a href="index.html" class="text-gray-600 hover:text-black transition">about</a>
             <a href="works.html" class="text-blue-600 font-semibold transition">works</a>
@@ -41,20 +67,37 @@
 
             <section class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
                 
-                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer">
-                    <img src="KOOMAXlogo.png" alt="KOOMAXlogo" class="object-contain w-4/5 h-4/5">
+                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer work-item-container">
+                    <img src="KOOMAXlogo.png" alt="KOOMAXlogo" class="object-contain w-4/5 h-4/5 project-image">
+                    <div class="overlay">
+                        <h3 class="font-semibold text-base">KOOMAX</h3>
+                        <p class="text-xs mt-1">New energy company brand identify</p>
+                    </div>
                 </div>
 
-                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer">
-                    <img src="miqroeralogo.png" alt="miqroera logo" class="object-contain w-full h-full p-4">
+                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer work-item-container">
+                    <img src="miqroeralogo.png" alt="miqroera logo" class="object-contain w-full h-full p-4 project-image">
+                    <div class="overlay">
+                        <h3 class="font-semibold text-base">MiQro Era</h3>
+                        <p class="text-xs mt-1">Tech startup visual identity</p>
+                    </div>
                 </div>
 
-                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer">
-                    <img src="wisquantumlogo.png" alt="WIS QUANTUM" class="object-contain w-4/5 h-4/5">
+                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer work-item-container">
+                    <img src="wisquantumlogo.png" alt="WIS QUANTUM" class="object-contain w-4/5 h-4/5 project-image">
+                    <div class="overlay">
+                        <h3 class="font-semibold text-base">WIS Quantum</h3>
+                        <p class="text-xs mt-1">Quantum commmunication company logo design</p>
+                    </div>
                 </div>
 
-                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer">
-                    <img src="thefixlogo.png" alt="The Fix Solutions" class="object-contain w-4/5 h-4/5">
+                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer work-item-container">
+                    <img src="thefixlogo.png" alt="The Fix Solutions" class="object-contain w-4/5 h-4/5 project-image">
+                    <div class="overlay">
+                        <h3 class="font-semibold text-base">The Fix Solutions</h3>
+                        <p class="text-xs mt-1">Consumer Electronics Retail, Wholesale & Repair
+</p>
+                    </div>
                 </div>
 
             </section>

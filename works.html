@@ -10,6 +10,32 @@
     <style>
         body { font-family: 'Inter', sans-serif; color: #333; }
         .work-item-bg { background-color: #f9f9f9; }
+        .work-item-container {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+        .work-item-container:hover {
+            background-color: #d1d1d1; /* 整体背景变暗 */
+        }
+        .work-item-container:hover .overlay {
+            transform: translateY(0);
+        }
+        .work-item-container:hover .project-image {
+            filter: brightness(0.6); /* 图片也变暗 */
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -41,28 +67,52 @@
 
             <section class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
                 
-                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer">
-                    <img src="pianopool.png" alt="Piano Inflatable Pool" class="object-contain w-4/5 h-4/5">
+                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer work-item-container">
+                    <img src="pianopool.png" alt="Piano Inflatable Pool" class="object-contain w-4/5 h-4/5 project-image">
+                    <div class="overlay">
+                        <h3 class="font-semibold text-base">Piano Inflatable Pool</h3>
+                        <p class="text-xs mt-1">Musical instrument themed pool design</p>
+                    </div>
                 </div>
 
-                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer">
-                    <img src="sup.png" alt="sup" class="object-contain w-4/5 h-4/5">
+                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer work-item-container">
+                    <img src="sup.png" alt="sup" class="object-contain w-4/5 h-4/5 project-image">
+                    <div class="overlay">
+                        <h3 class="font-semibold text-base">SUP Board Design</h3>
+                        <p class="text-xs mt-1">Stand-up paddleboard design</p>
+                    </div>
                 </div>
 
-                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer">
-                    <img src="coolingvest.png" alt="Cooling Suit Design" class="object-contain w-full h-full p-4">
+                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer work-item-container">
+                    <img src="coolingvest.png" alt="Cooling Suit Design" class="object-contain w-full h-full p-4 project-image">
+                    <div class="overlay">
+                        <h3 class="font-semibold text-base">KOMERI Air-conditioned Suit</h3>
+                        <p class="text-xs mt-1">Personal Protective Equipment</p>
+                    </div>
                 </div>
 
-                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer">
-                    <img src="flashlight.png" alt="Lighting Device" class="object-contain w-4/5 h-4/5">
+                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer work-item-container">
+                    <img src="flashlight.png" alt="Lighting Device" class="object-contain w-4/5 h-4/5 project-image">
+                    <div class="overlay">
+                        <h3 class="font-semibold text-base">TOSHIBA FLashlight</h3>
+                        <p class="text-xs mt-1">Exploring new color markets</p>
+                    </div>
                 </div>
 
-                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer">
-                    <img src="xpeng.png" alt="Car Interior UI" class="object-cover w-full h-full">
+                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer work-item-container">
+                    <img src="xpeng.png" alt="Car Interior UI" class="object-cover w-full h-full project-image">
+                    <div class="overlay">
+                        <h3 class="font-semibold text-base">XPENG CMF Design</h3>
+                        <p class="text-xs mt-1">Automotive design</p>
+                    </div>
                 </div>
 
-                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer">
-                    <img src="phonecase.png" alt="Phone Case" class="object-contain w-4/5 h-4/5">
+                <div class="work-item-bg aspect-square flex items-center justify-center overflow-hidden hover:opacity-90 transition cursor-pointer work-item-container">
+                    <img src="phonecase.png" alt="Phone Case" class="object-contain w-4/5 h-4/5 project-image">
+                    <div class="overlay">
+                        <h3 class="font-semibold text-base">Otriz Phone Case Design</h3>
+                        <p class="text-xs mt-1">Protective mobile accessory</p>
+                    </div>
                 </div>
 
             </section>
